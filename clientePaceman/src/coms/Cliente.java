@@ -14,10 +14,12 @@ public class Cliente extends comunicacion{
     public void initClient(){
         try {
             msjOut = new DataOutputStream(client.getOutputStream());
-            msjOut.writeInt(1);
-            BufferedReader inFromServer = new BufferedReader(new InputStreamReader(client.getInputStream()));
+            msjOut.writeBytes("OUT");
             System.out.println("msjSent");
-            System.out.println(inFromServer.readLine());
+
+            BufferedReader inFromServer = new BufferedReader(new InputStreamReader(client.getInputStream()));
+            String reply = inFromServer.readLine();
+            ProcessServerInput.read(reply);
             client.close();
         }
         catch (Exception e)
