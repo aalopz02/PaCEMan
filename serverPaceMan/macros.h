@@ -1,0 +1,13 @@
+#define PORT 8080
+#define LARGO 21
+#define ALTO 27
+#define DEFAULT_X 25
+#define DEFAULT_Y 10
+#define PARED 'N'
+#define PUNTO 'O'
+#define PILL 'X'
+#define FRUTA 'F'
+#define VACIO '-'
+#define PACMAN 'J'
+#define BLINKY 'B'
+#define PINKY 'P'
