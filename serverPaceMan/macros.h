@@ -3,11 +3,14 @@
 #define ALTO 27
 #define DEFAULT_X 25
 #define DEFAULT_Y 10
+#define MAX_GHOSTS 4
 #define PARED 'N'
+#define SPAWN 'S'
 #define PUNTO 'O'
 #define PILL 'X'
 #define FRUTA 'F'
 #define VACIO '-'
 #define PACMAN 'J'
-#define BLINKY 'B'
-#define PINKY 'P'
+#define DEFAULT_SPAWN_X 13
+#define DEFAULT_SPAWN_Y 10
+#define PTO_DOT 10

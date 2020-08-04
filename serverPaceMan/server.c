@@ -20,7 +20,8 @@ int opt = 1;
 int addrlen = sizeof(address);
 char buffer[1024];
 char *ok = "ok";
-
+char *nombresDefault = "BPIC";
+char *nombresEAT_ABLE = "bpic";
 bool flagEntradaAdmin = false;
 bool flagFin = false;
 char comandoAdmin[1024];
@@ -30,20 +31,35 @@ struct struct_jugador{
   int posY;
   int puntaje;
   int vidas;
+  bool super;
+};
+
+struct fantasma{
+  int posX;
+  int posY;
+};
+
+struct fruta{
+  int posX;
+  int posY;
 };
 
 struct struct_tablero{
-  int fantasmas;
+  int numeroFantasmas;
+  struct fantasma fantasmasActivos[4];
+  struct fruta bonus;
+  int velocidad;
   char area[ALTO][LARGO];
-};
 
+};
 
 int fillTablero(){
   jugador.vidas = 3;
   jugador.puntaje = 0;
   jugador.posX = DEFAULT_X;
   jugador.posY = DEFAULT_Y;
-  tablero.fantasmas =  4;
+  jugador.super = false;
+  tablero.numeroFantasmas = 0;
   int c;
   FILE *file;
   file = fopen("area", "r");
@@ -52,7 +68,6 @@ int fillTablero(){
         for (int i = 0; i < ALTO; i++){
           for (int j = 0; j < LARGO+1; j++){
             tablero.area[i][j] = c;
-            //putchar(tablero.area[i][j]);
             c = getc(file);
           }
         }
@@ -78,20 +93,75 @@ void* hiloConsolaAdmin(void *args){
   }
 }
 
-void checkMove(int posX, int posY){
-  if (tablero.area[posX][posY] != PARED){
-    if (tablero.area[posX][posY] == PUNTO){
-      jugador.puntaje = jugador.puntaje + 1;
+void* superPacMan(void *args){
+  for (int i = 0; i <= tablero.numeroFantasmas; i++){
+    tablero.area[tablero.fantasmasActivos[i].posX][tablero.fantasmasActivos[i].posY] = nombresEAT_ABLE[i];
+    printf("%d\n", i);
+  }
+  wait(5);
+  jugador.super = false;
+  for (int i = 0; i <= tablero.numeroFantasmas; i++){
+    tablero.area[tablero.fantasmasActivos[i].posX][tablero.fantasmasActivos[i].posY] = nombresDefault[i];
+  }
+}
 
+void checkGhost(){
+  if (flagEntradaAdmin){
+    if (strcmp(comandoAdmin,"fantasma")) {
+      if (tablero.numeroFantasmas < MAX_GHOSTS) {
+        tablero.fantasmasActivos[tablero.numeroFantasmas].posX = DEFAULT_SPAWN_X;
+        tablero.fantasmasActivos[tablero.numeroFantasmas].posY = DEFAULT_SPAWN_Y;
+        tablero.area[DEFAULT_SPAWN_X][DEFAULT_SPAWN_Y] = nombresDefault[tablero.numeroFantasmas];
+        tablero.numeroFantasmas = tablero.numeroFantasmas + 1;
+        flagEntradaAdmin = false;
+        strcpy(comandoAdmin,"");
+      }
+    }
+  }
+}
+
+void checkMove(int posX, int posY){
+  checkGhost();
+  bool flagDead = false;
+  if (tablero.area[posX][posY] != PARED && tablero.area[posX][posY] != SPAWN){
+    if (tablero.area[posX][posY] == PUNTO){
+      jugador.puntaje = jugador.puntaje + PTO_DOT;
+
+    }
+    if (tablero.area[posX][posY] == PILL) {
+      jugador.super = true;
+      pthread_t contador;
+      int hilo = pthread_create(&contador,NULL, &superPacMan,NULL);
+
+    }
+    for (int i = 0; i <= tablero.numeroFantasmas; i++){
+      if (tablero.fantasmasActivos[i].posX == posX && tablero.fantasmasActivos[i].posY == posY){
+        if (jugador.super) {
+          printf("%s\n","Score");
+        } else {
+          printf("%s\n","DED");
+          flagDead = true;
+        }
+      }
+    }
+    if (flagDead){
+      posX = DEFAULT_X;
+      posY = DEFAULT_Y;
+      jugador.vidas = jugador.vidas - 1;
+      if (jugador.vidas <= 0) {
+        flagEntradaAdmin = true;
+        strcpy(comandoAdmin,"DED");
+        return;
+      }
     }
     tablero.area[jugador.posX][jugador.posY] = VACIO;
     tablero.area[posX][posY] = PACMAN;
     jugador.posX = posX;
     jugador.posY = posY;
-
   } else {
     printf("%s\n", "bloqued");
   }
+
 }
 
 void armarRespuesta(char *respuesta) {
@@ -102,26 +172,29 @@ void armarRespuesta(char *respuesta) {
 void procesarEntrada(char *respuesta){
   printf("In: ");
   printf("%s\n", buffer);
+  int incrementoX = 0;
+  int incrementoY = 0;
   if (strcmp(respuesta,"OUT") == 0) {
     printf("%s\n", "FIN");
     return;
   }
   if (strcmp(respuesta,"RIGHT") == 0) {
     printf("%s\n", "RIGHT");
-    checkMove(jugador.posX,jugador.posY+1);
+    incrementoY = 1;
   }
   if (strcmp(respuesta,"LEFT") == 0) {
     printf("%s\n", "LEFT");
-    checkMove(jugador.posX,jugador.posY-1);
+    incrementoY = -1;
   }
   if (strcmp(respuesta,"DOWN") == 0) {
     printf("%s\n", "DOWN");
-    checkMove(jugador.posX+1,jugador.posY);
+    incrementoX = 1;
   }
   if (strcmp(respuesta,"UPS") == 0) {
     printf("%s\n", "UPS");
-    checkMove(jugador.posX-1,jugador.posY);
+    incrementoX = -1;
   }
+  checkMove(jugador.posX+incrementoX,jugador.posY+incrementoY);
   armarRespuesta(respuesta);
 }
 
@@ -175,12 +248,6 @@ void startServer(){
     int len = recv(cliente, buffer, sizeof(buffer), 0);
 
     if (len > 0) {
-
-      if (flagEntradaAdmin){
-        write(cliente , comandoAdmin , strlen(comandoAdmin));
-        printf("admin sent\n");
-        flagEntradaAdmin = false;
-      }
       procesarEntrada(buffer);
       write(cliente, buffer, 1024);
       shutdown(cliente,2);
