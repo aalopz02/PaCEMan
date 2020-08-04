@@ -10,7 +10,6 @@
 #include <time.h>
 #include "macros.h"
 
-
 struct sockaddr_in address;
 struct struct_tablero tablero;
 struct struct_jugador jugador;
@@ -25,6 +24,9 @@ char *nombresEAT_ABLE = "bpic";
 bool flagEntradaAdmin = false;
 bool flagFin = false;
 char comandoAdmin[1024];
+int posPill[2] = {0,0};
+int posiblePills[2][10] = {{1,1,1,1,8,8,18,18,24,24},{1,9,11,19,1,19,1,19,1,19}};
+int positionNumber[10] = {0,1,2,3,4,5,6,7,8,9};
 
 struct struct_jugador{
   int posX;
@@ -40,18 +42,39 @@ struct fantasma{
 };
 
 struct fruta{
+  int score;
   int posX;
   int posY;
+  int puntos;
+  bool wasDot;
+};
+
+struct pill{
+  int posX;
+  int posY;
+  bool wasDot;
 };
 
 struct struct_tablero{
   int numeroFantasmas;
+  int numeroPills;
   struct fantasma fantasmasActivos[4];
+  struct pill pills[10];
   struct fruta bonus;
   int velocidad;
   char area[ALTO][LARGO];
-
+  int dots;
 };
+
+int inArray(int numero, int array[]){
+    for(int i = 0 ; i < MAX_PILLS; i++) {
+      printf("%d\n", array[i]);
+        if(array[i] == numero) {
+            return i;
+        }
+    }
+    return -1;
+}
 
 int fillTablero(){
   jugador.vidas = 3;
@@ -60,6 +83,8 @@ int fillTablero(){
   jugador.posY = DEFAULT_Y;
   jugador.super = false;
   tablero.numeroFantasmas = 0;
+  tablero.numeroPills = 0;
+  tablero.dots = NUMERO_DOTS;
   int c;
   FILE *file;
   file = fopen("area", "r");
@@ -85,12 +110,37 @@ void wait(int seconds){
 }
 
 void* hiloConsolaAdmin(void *args){
-  while(!flagFin){
-    printf( "Enter a value :");
+  do{
+    printf("Enter a command: ");
     fgets(comandoAdmin,1024,stdin);
     flagEntradaAdmin = true;
+    if (strcmp(comandoAdmin,"pill\n") == 0){
+      if (tablero.numeroPills < MAX_PILLS) {
+            char posIn[5];
+            printf("Enter position number: ");
+            fgets(posIn,5,stdin);
+            int posInAux = atoi(posIn);
+            if (inArray(posInAux,positionNumber) != -1) {
+              positionNumber[posInAux] = -1;
+              posPill[0] = posiblePills[0][posInAux];
+              posPill[1] = posiblePills[1][posInAux];
+            } else {
+              printf("%s\n", "invalid pos, try again");
+            }
+          } else {
+            printf("%s\n", "no more power ups");
+          }
+    }
+    if (strcmp(comandoAdmin,"fruta\n") == 0) {
+      char scoreIn[5];
+      printf("Enter position score: ");
+      fgets(scoreIn,5,stdin);
+      tablero.bonus.score = atoi(scoreIn);
+      tablero.bonus.posX = DEFAULT_FRUTA_X;
+      tablero.bonus.posY = DEFAULT_FRUTA_Y;
+    }
     wait(2);
-  }
+  } while(!flagFin);
 }
 
 void* superPacMan(void *args){
@@ -105,9 +155,9 @@ void* superPacMan(void *args){
   }
 }
 
-void checkGhost(){
+void checkCommand(){
   if (flagEntradaAdmin){
-    if (strcmp(comandoAdmin,"fantasma")) {
+    if (strcmp(comandoAdmin,"fantasma\n") == 0) {
       if (tablero.numeroFantasmas < MAX_GHOSTS) {
         tablero.fantasmasActivos[tablero.numeroFantasmas].posX = DEFAULT_SPAWN_X;
         tablero.fantasmasActivos[tablero.numeroFantasmas].posY = DEFAULT_SPAWN_Y;
@@ -115,24 +165,66 @@ void checkGhost(){
         tablero.numeroFantasmas = tablero.numeroFantasmas + 1;
         flagEntradaAdmin = false;
         strcpy(comandoAdmin,"");
+        return;
       }
     }
+    if (strcmp(comandoAdmin,"pill\n") == 0) {
+        tablero.pills[tablero.numeroPills].posX = posPill[0];
+        tablero.pills[tablero.numeroPills].posY = posPill[1];
+        if (tablero.area[posPill[0]][posPill[1]] == PUNTO) {
+          tablero.pills[tablero.numeroPills].wasDot = true;
+        } else {
+          tablero.pills[tablero.numeroPills].wasDot = false;
+        }
+        tablero.area[posPill[0]][posPill[1]] = PILL;
+        tablero.numeroPills = tablero.numeroPills + 1;
+        flagEntradaAdmin = false;
+        strcpy(comandoAdmin,"");
+   }
+   if (strcmp(comandoAdmin,"speed\n") == 0) {
+     tablero.velocidad = tablero.velocidad + 1;
+     printf("%s\n", "gottsagofast");
+
+   }
+   if (strcmp(comandoAdmin,"fruta\n") == 0) {
+     if (tablero.area[DEFAULT_FRUTA_X][DEFAULT_FRUTA_Y] == PUNTO) {
+       tablero.bonus.wasDot = true;
+     } else {
+       tablero.bonus.wasDot = false;
+     }
+     tablero.area[DEFAULT_FRUTA_X][DEFAULT_FRUTA_Y] = FRUTA;
+     flagEntradaAdmin = false;
+     strcpy(comandoAdmin,"");
+   }
   }
 }
 
 void checkMove(int posX, int posY){
-  checkGhost();
+  checkCommand();
   bool flagDead = false;
   if (tablero.area[posX][posY] != PARED && tablero.area[posX][posY] != SPAWN){
     if (tablero.area[posX][posY] == PUNTO){
       jugador.puntaje = jugador.puntaje + PTO_DOT;
-
+      tablero.dots =  tablero.dots - 1;
     }
     if (tablero.area[posX][posY] == PILL) {
+      for (int i = 0; i <= tablero.numeroPills; i++) {
+        if (tablero.pills[i].wasDot && (tablero.pills[i].posX == posX && tablero.pills[i].posY == posY)){
+          tablero.dots =  tablero.dots - 1;
+        }
+      }
       jugador.super = true;
       pthread_t contador;
       int hilo = pthread_create(&contador,NULL, &superPacMan,NULL);
 
+    }
+    if (tablero.bonus.posX == posX && tablero.bonus.posY == posY) {
+      jugador.puntaje = jugador.puntaje + tablero.bonus.score;
+      if (tablero.bonus.wasDot) {
+        tablero.dots =  tablero.dots - 1;
+      }
+      tablero.bonus.posX = -1;
+      tablero.bonus.posY = -1;
     }
     for (int i = 0; i <= tablero.numeroFantasmas; i++){
       if (tablero.fantasmasActivos[i].posX == posX && tablero.fantasmasActivos[i].posY == posY){
@@ -158,20 +250,19 @@ void checkMove(int posX, int posY){
     tablero.area[posX][posY] = PACMAN;
     jugador.posX = posX;
     jugador.posY = posY;
-  } else {
-    printf("%s\n", "bloqued");
+    if (tablero.dots == 0){
+      printf("%s\n", "gano");
+    }
   }
-
 }
 
 void armarRespuesta(char *respuesta) {
   bzero(buffer,1024);
+  //rearmar tablero con structs
   strcpy(respuesta,tablero.area[0]);
 }
 
 void procesarEntrada(char *respuesta){
-  printf("In: ");
-  printf("%s\n", buffer);
   int incrementoX = 0;
   int incrementoY = 0;
   if (strcmp(respuesta,"OUT") == 0) {
@@ -179,19 +270,15 @@ void procesarEntrada(char *respuesta){
     return;
   }
   if (strcmp(respuesta,"RIGHT") == 0) {
-    printf("%s\n", "RIGHT");
     incrementoY = 1;
   }
   if (strcmp(respuesta,"LEFT") == 0) {
-    printf("%s\n", "LEFT");
     incrementoY = -1;
   }
   if (strcmp(respuesta,"DOWN") == 0) {
-    printf("%s\n", "DOWN");
     incrementoX = 1;
   }
   if (strcmp(respuesta,"UPS") == 0) {
-    printf("%s\n", "UPS");
     incrementoX = -1;
   }
   checkMove(jugador.posX+incrementoX,jugador.posY+incrementoY);

@@ -4,6 +4,7 @@
 #define DEFAULT_X 25
 #define DEFAULT_Y 10
 #define MAX_GHOSTS 4
+#define MAX_PILLS 10
 #define PARED 'N'
 #define SPAWN 'S'
 #define PUNTO 'O'
@@ -13,4 +14,7 @@
 #define PACMAN 'J'
 #define DEFAULT_SPAWN_X 13
 #define DEFAULT_SPAWN_Y 10
+#define DEFAULT_FRUTA_X 16
+#define DEFAULT_FRUTA_Y 10
 #define PTO_DOT 10
+#define NUMERO_DOTS 222
