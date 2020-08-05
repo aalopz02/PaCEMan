@@ -1,25 +1,34 @@
-package coms;
+package Comunicacion;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
 
-public class Cliente extends comunicacion{
+import Logica.Tablero;
 
-    public Cliente() throws IOException{
+public class Cliente extends comunicacion {
+
+    public  java.lang.String array;
+
+
+    public String getArray() {
+        return array;
+    }
+
+    public void setArray(String array) {
+        this.array = array;
+    }
+
+    public Cliente() throws java.io.IOException{
         super("cliente");
     }
 
     public void initClient(){
         try {
-            msjOut = new DataOutputStream(client.getOutputStream());
-            msjOut.writeBytes("OUT");
+            msjOut = new java.io.DataOutputStream(client.getOutputStream());
+            msjOut.writeBytes("Holahola");
             System.out.println("msjSent");
 
-            BufferedReader inFromServer = new BufferedReader(new InputStreamReader(client.getInputStream()));
-            String reply = inFromServer.readLine();
-            ProcessServerInput.read(reply);
+            java.io.BufferedReader inFromServer = new java.io.BufferedReader(new java.io.InputStreamReader(client.getInputStream()));
+            java.lang.String reply = inFromServer.readLine();
+            setArray(ProcessServerInput.read(reply));
             client.close();
         }
         catch (Exception e)

@@ -1,28 +1,22 @@
 package GUI;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 
-import java.io.File;
 
-public class Main extends Application {
-    static String bip = "pacman_beginning.wav";
-    static Media hit = new Media(new File(bip).toURI().toString());
-    static MediaPlayer mediaPlayer = new MediaPlayer(hit);
-    public static Scene scene;
-    public static Parent root;
-    public static Stage stage;
+
+public class Main extends javafx.application.Application {
+    static java.lang.String bip = "pacman_beginning.wav";
+    static javafx.scene.media.Media hit = new javafx.scene.media.Media(new java.io.File(bip).toURI().toString());
+    static javafx.scene.media.MediaPlayer mediaPlayer = new javafx.scene.media.MediaPlayer(hit);
+    public static javafx.scene.Scene scene;
+    public static javafx.scene.Parent root;
+    public static javafx.stage.Stage stage;
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+    public void start(javafx.stage.Stage primaryStage) throws java.io.IOException{
+
+        root = javafx.fxml.FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("PaCEman");
-        scene=new Scene(root, 630, 850);
+        scene=new javafx.scene.Scene(root, 630, 850);
         primaryStage.setScene(scene);
         primaryStage.show();
         mediaPlayer.play();
@@ -30,7 +24,7 @@ public class Main extends Application {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws java.io.IOException {
         launch(args);
     }
 

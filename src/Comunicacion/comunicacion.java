@@ -1,23 +1,23 @@
-package coms;
+package Comunicacion;
 
-import java.io.*;
-import java.net.ServerSocket;
-import java.net.Socket;
+
+import Logica.Tablero;
 
 public abstract class comunicacion {
 
-    private final int puerto = 8080;
-    private final String nombreHost = "192.168.1.6";
-    protected ServerSocket server;
-    protected Socket client;
-    protected DataOutputStream msjOut;
+    private final java.lang.Integer puerto = 8080;
+    private final java.lang.String nombreHost = "192.168.100.3";
+    protected java.net.ServerSocket server;
+    protected java.net.Socket client;
+    protected java.io.DataOutputStream msjOut;
 
-    public comunicacion(String init) throws IOException {
+
+    public comunicacion(java.lang.String init) throws java.io.IOException {
         if (init.equals("cliente")){
-            client = new Socket(nombreHost,puerto);
+            client = new java.net.Socket(nombreHost,puerto);
         } else {
-            server = new ServerSocket(puerto);
-            client = new Socket();
+            server = new java.net.ServerSocket(puerto);
+            client = new java.net.Socket();
         }
 
     }

@@ -11,6 +11,20 @@
       <change afterPath="$PROJECT_DIR$/../ISAACPRO/src/src/Logica/Letra.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ISAACPRO/src/src/Logica/Palabra.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ISAACPRO/src/src/Logica/Tablero.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bolitas_pacman.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cereza.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fantasma.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fantasma2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fantasma3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fantasma4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fantasma5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fantasmacomible.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fresa.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pacman.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pastillas_pacman.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GUI/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Logica/Objeto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uva.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Proyecto2/src/Estructuras/BinaryTree.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Proyecto2/src/Estructuras/HashMapdata.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Proyecto2/src/Estructuras/ListaEnlazada.java" afterDir="false" />
@@ -43,19 +57,23 @@
       <change afterPath="$PROJECT_DIR$/../inmemDB/TAREAEXTRACLASE3y4/src/Tests/Pruebas.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../untitled4/car.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../untitled4/car2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientePaceman/clientePaceman.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientePaceman/out/production/clientePaceman/coms/Cliente.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientePaceman/out/production/clientePaceman/coms/ProcessServerInput.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientePaceman/out/production/clientePaceman/coms/comunicacion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientePaceman/out/production/clientePaceman/sample/Controller.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientePaceman/out/production/clientePaceman/sample/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientePaceman/out/production/clientePaceman/sample/sample.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientePaceman/src/coms/Cliente.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientePaceman/src/coms/ProcessServerInput.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientePaceman/src/coms/comunicacion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientePaceman/src/sample/Controller.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientePaceman/src/sample/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientePaceman/src/sample/sample.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PaCEman2/Comunicacion/ClienteSocket.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PaCEman2/GUI/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PaCEman2/GUI/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PaCEman2/GUI/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PaCEman2/GUI/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PaCEman2/Logica/Fantasmas.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PaCEman2/Logica/Paceman.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PaCEman2/Logica/Tablero.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PaCEman2/Logica/Tablero.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Comunicacion/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Comunicacion/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Comunicacion/ClienteSocket.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Comunicacion/ProcessServerInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Comunicacion/ProcessServerInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Comunicacion/comunicacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Comunicacion/comunicacion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Logica/Fantasmas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logica/Personajes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Logica/Juego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logica/Juego.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Logica/Paceman.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Logica/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logica/Tablero.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -113,43 +131,96 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Comunicacion/ClienteSocket.java">
+        <entry file="file://$PROJECT_DIR$/src/GUI/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="40">
-              <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
+            <state relative-caret-position="-89">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/clientePaceman/out/production/clientePaceman/sample/sample.fxml">
-          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-          <provider editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/src/GUI/Controller.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="27" column="39" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/clientePaceman/out/production/clientePaceman/sample/Main.class">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/src/Logica/Personajes.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+              <folding>
+                <element signature="e#197#198#0" expanded="true" />
+                <element signature="e#224#225#0" expanded="true" />
+                <element signature="e#265#266#0" expanded="true" />
+                <element signature="e#297#298#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/clientePaceman/out/production/clientePaceman/sample/Controller.class">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/src/Comunicacion/ProcessServerInput.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="260">
+              <caret line="13" selection-start-line="13" selection-end-line="13" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/clientePaceman/out/production/clientePaceman/coms/ProcessServerInput.class">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/src/Comunicacion/Cliente.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-20">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
+              <folding>
+                <element signature="e#520#521#0" expanded="true" />
+                <element signature="e#548#549#0" expanded="true" />
+                <element signature="e#590#591#0" expanded="true" />
+                <element signature="e#624#625#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/clientePaceman/out/production/clientePaceman/coms/comunicacion.class">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/src/Comunicacion/comunicacion.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/clientePaceman/out/production/clientePaceman/coms/Cliente.class">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/src/Logica/Tablero.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="311">
+              <caret line="57" column="49" selection-start-line="57" selection-start-column="49" selection-end-line="57" selection-end-column="49" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#280#281#0" expanded="true" />
+                <element signature="e#316#317#0" expanded="true" />
+                <element signature="e#381#382#0" expanded="true" />
+                <element signature="e#431#432#0" expanded="true" />
+                <element signature="e#480#481#0" expanded="true" />
+                <element signature="e#518#519#0" expanded="true" />
+                <element signature="e#587#588#0" expanded="true" />
+                <element signature="e#641#642#0" expanded="true" />
+                <element signature="e#1136#1137#0" expanded="true" />
+                <element signature="e#1170#1171#0" expanded="true" />
+                <element signature="e#1114#1115#0" expanded="true" />
+                <element signature="e#1172#1173#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -162,10 +233,20 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Logica/Bolas_Puntos.java">
+        <entry file="file://$PROJECT_DIR$/src/Logica/Objeto.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="40">
-              <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
+            <state relative-caret-position="660">
+              <caret line="33" selection-start-line="33" selection-end-line="33" />
+              <folding>
+                <element signature="e#460#461#0" expanded="true" />
+                <element signature="e#497#498#0" expanded="true" />
+                <element signature="e#554#555#0" expanded="true" />
+                <element signature="e#606#607#0" expanded="true" />
+                <element signature="e#810#811#0" expanded="true" />
+                <element signature="e#847#848#0" expanded="true" />
+                <element signature="e#904#905#0" expanded="true" />
+                <element signature="e#956#957#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -186,6 +267,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -206,15 +288,24 @@
         <option value="$PROJECT_DIR$/src/sample/sample.fxml" />
         <option value="$PROJECT_DIR$/src/GUI/sample.fxml" />
         <option value="$PROJECT_DIR$/src/Logica/Paceman.java" />
+        <option value="$PROJECT_DIR$/src/Logica/Juego.java" />
+        <option value="$PROJECT_DIR$/src/Logica/Tipos_Objetos.java" />
+        <option value="$PROJECT_DIR$/src/Logica/Objeto.java" />
+        <option value="$PROJECT_DIR$/src/Logica/Personajes.java" />
+        <option value="$PROJECT_DIR$/src/GUI/Main.java" />
+        <option value="$PROJECT_DIR$/src/Comunicacion/comunicacion.java" />
+        <option value="$PROJECT_DIR$/src/Comunicacion/Cliente.java" />
+        <option value="$PROJECT_DIR$/src/Comunicacion/ProcessServerInput.java" />
+        <option value="$PROJECT_DIR$/src/GUI/Controller.java" />
+        <option value="$PROJECT_DIR$/src/Logica/Tablero.java" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="-7" />
+    <option name="width" value="974" />
+    <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
@@ -238,47 +329,6 @@
               <item name="PaCEman2" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="PaCEman2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PaCEman2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="clientePaceman" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PaCEman2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PaCEman2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="clientePaceman" type="462c0819:PsiDirectoryNode" />
-              <item name="clientePaceman" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PaCEman2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PaCEman2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="clientePaceman" type="462c0819:PsiDirectoryNode" />
-              <item name="clientePaceman" type="462c0819:PsiDirectoryNode" />
-              <item name="coms" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PaCEman2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PaCEman2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="clientePaceman" type="462c0819:PsiDirectoryNode" />
-              <item name="clientePaceman" type="462c0819:PsiDirectoryNode" />
-              <item name="sample" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PaCEman2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PaCEman2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="GUI" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PaCEman2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PaCEman2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Logica" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -295,7 +345,7 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1596513820600" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1596609782296" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Global Libraries" />
@@ -305,11 +355,11 @@
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\adril\IdeaProjects\PaCEman2" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\adril\IdeaProjects\PaCEman2" />
       <recent name="C:\Users\adril\IdeaProjects\PaCEman2\src" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\adril\IdeaProjects\PaCEman2" />
     </key>
   </component>
@@ -418,7 +468,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.12953092" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.12953092" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
@@ -427,8 +477,8 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32936078" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -438,8 +488,8 @@
       <window_info anchor="bottom" id="Changes" order="10" />
       <window_info anchor="bottom" id="Profiler" order="11" />
       <window_info anchor="bottom" id="Event Log" order="12" />
-      <window_info anchor="bottom" id="Messages" order="13" />
-      <window_info anchor="bottom" id="Terminal" order="14" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.32827735" />
+      <window_info anchor="bottom" id="Terminal" order="14" weight="0.32932165" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -469,79 +519,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BackgroundPaCEman.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logica/Fantasmas.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logica/Paceman.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logica/Tablero.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logica/Juego.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logica/Bolas_Puntos.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/sample.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Comunicacion/ClienteSocket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/clientePaceman/out/production/clientePaceman/sample/sample.fxml">
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
       <provider editor-type-id="text-editor" />
@@ -559,7 +536,153 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/clientePaceman/out/production/clientePaceman/coms/Cliente.class">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Comunicacion/ClienteSocket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logica/Paceman.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logica/Tipos_Objetos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackgroundPaCEman.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logica/Bolas_Puntos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logica/Personajes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+          <folding>
+            <element signature="e#197#198#0" expanded="true" />
+            <element signature="e#224#225#0" expanded="true" />
+            <element signature="e#265#266#0" expanded="true" />
+            <element signature="e#297#298#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logica/Objeto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+          <folding>
+            <element signature="e#460#461#0" expanded="true" />
+            <element signature="e#497#498#0" expanded="true" />
+            <element signature="e#554#555#0" expanded="true" />
+            <element signature="e#606#607#0" expanded="true" />
+            <element signature="e#810#811#0" expanded="true" />
+            <element signature="e#847#848#0" expanded="true" />
+            <element signature="e#904#905#0" expanded="true" />
+            <element signature="e#956#957#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logica/Juego.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/sample.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-89">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Comunicacion/Cliente.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-20">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#520#521#0" expanded="true" />
+            <element signature="e#548#549#0" expanded="true" />
+            <element signature="e#590#591#0" expanded="true" />
+            <element signature="e#624#625#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="27" column="39" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Comunicacion/comunicacion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Comunicacion/ProcessServerInput.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logica/Tablero.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="57" column="49" selection-start-line="57" selection-start-column="49" selection-end-line="57" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#280#281#0" expanded="true" />
+            <element signature="e#316#317#0" expanded="true" />
+            <element signature="e#381#382#0" expanded="true" />
+            <element signature="e#431#432#0" expanded="true" />
+            <element signature="e#480#481#0" expanded="true" />
+            <element signature="e#518#519#0" expanded="true" />
+            <element signature="e#587#588#0" expanded="true" />
+            <element signature="e#641#642#0" expanded="true" />
+            <element signature="e#1136#1137#0" expanded="true" />
+            <element signature="e#1170#1171#0" expanded="true" />
+            <element signature="e#1114#1115#0" expanded="true" />
+            <element signature="e#1172#1173#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">
