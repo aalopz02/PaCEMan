@@ -24,6 +24,9 @@ public class Tablero implements Cloneable {
     DataOutputStream msjOut;
     int puerto = 8080;
     String nombreHost = "192.168.1.6";
+    private javafx.scene.input.KeyCode last;
+    java.util.LinkedList lista_personaje=new java.util.LinkedList();
+    java.util.LinkedList lista_inanimado=new java.util.LinkedList();
 
     public LinkedList getLista_inanimado() {
         return lista_inanimado;
@@ -39,10 +42,6 @@ public class Tablero implements Cloneable {
 
     public void setLast(KeyCode last) {
     }
-
-    private javafx.scene.input.KeyCode last;
-    java.util.LinkedList lista_personaje=new java.util.LinkedList();
-    java.util.LinkedList lista_inanimado=new java.util.LinkedList();
 
     public java.lang.Character[][] getMatriz_actual() {
         return matriz_actual;
@@ -200,6 +199,8 @@ public class Tablero implements Cloneable {
         }
         if (!msj.equals("Inicio")){
             list_to_matrix(reply,27,21);
+        } else {
+            get_server_info("Inicio");
         }
 
     }
@@ -221,6 +222,7 @@ public class Tablero implements Cloneable {
                     );
                     if (last != null) {
                         for (int i = 0; i < lista_inanimado.size(); i++) {
+                            System.out.println(lista_inanimado.size());
                             juego.getChildren().remove(lista_inanimado.get(i));
                         }
                         try {

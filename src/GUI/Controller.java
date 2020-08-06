@@ -11,7 +11,6 @@ public class Controller {
     private javafx.scene.media.MediaPlayer mediaplayer;
 
     public void begin_game(javafx.scene.input.MouseEvent mouseEvent) throws java.io.IOException {
-
         button1.setVisible(false);
         inicio.setVisible(false);
         button1.setVisible(false);
