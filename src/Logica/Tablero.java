@@ -105,7 +105,6 @@ public class Tablero implements Cloneable {
 
     public void get_image(java.lang.Character tipo,int posx,int posy){
 
-        java.lang.Boolean encontrado=false;
         javafx.scene.image.Image image;
         switch(tipo) {
             case 'O':
@@ -118,54 +117,20 @@ public class Tablero implements Cloneable {
                 create_rectangle(tipo,listaImgs.get(1),posx,posy);
                 break;
             case 'J':
-                for(int i=0;i<lista_personaje.size();i++){
-                    if(((Personajes) lista_personaje.get(i)).getNombre().equals('J')) {
-                        ((Personajes) lista_personaje.get(i)).setRotate(java.lang.Math.toDegrees(java.lang.Math.atan2(((Personajes) lista_personaje.get(i)).getY()-30*posy,((Personajes) lista_personaje.get(i)).getX()-30*posx))+180);
-                        while (((Personajes) lista_personaje.get(i)).getY()!=30*posy) {
-
-
-                            if(((Personajes) lista_personaje.get(i)).getY()>30*posy){
-                                ((Personajes) lista_personaje.get(i)).setY(((Personajes) lista_personaje.get(i)).getY()-1);
-                            }
-                            else{
-                                ((Personajes) lista_personaje.get(i)).setY(((Personajes) lista_personaje.get(i)).getY()+1);
-                            }
-
-                        }
-
-                            while (((Personajes) lista_personaje.get(i)).getX() != 30 * posx) {
-                                if (((Personajes) lista_personaje.get(i)).getX() > 30 * posx) {
-                                    ((Personajes) lista_personaje.get(i)).setX(((Personajes) lista_personaje.get(i)).getX() - 1);
-
-                                } else {
-                                    ((Personajes) lista_personaje.get(i)).setX(((Personajes) lista_personaje.get(i)).getX() + 1);
-                                }
-                            }
-
-
-                        try {
-                            Thread.sleep(10);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        encontrado=true;
-                    }
-                }
-                if(!encontrado){
-                    create_rectangle(tipo,listaImgs.get(2),posx,posy);
-                }
+                mover_personaje(tipo,listaImgs.get(2),posx,posy);
                 break;
             case 'B':
-                create_rectangle(tipo,listaImgs.get(3),posx,posy);
+                mover_personaje(tipo,listaImgs.get(3),posx,posy);
                 break;
             case 'P':
-                create_rectangle(tipo,listaImgs.get(4),posx,posy);
+                mover_personaje(tipo,listaImgs.get(4),posx,posy);
                 break;
             case 'I':
-                create_rectangle(tipo,listaImgs.get(5),posx,posy);
+                mover_personaje(tipo,listaImgs.get(5),posx,posy);
+
                 break;
             case 'C':
-                create_rectangle(tipo,listaImgs.get(6),posx,posy);
+                mover_personaje(tipo,listaImgs.get(6),posx,posy);
                 break;
 
         }
@@ -174,13 +139,53 @@ public class Tablero implements Cloneable {
     }
     private void initListaSprites(){
         listaImgs.add(new javafx.scene.image.Image(new java.io.File("pastillas_pacman.png").toURI().toString()));
-        listaImgs.add(new javafx.scene.image.Image(new java.io.File("uva.png").toURI().toString()));
+        listaImgs.add(new javafx.scene.image.Image(new java.io.File("uvas.png").toURI().toString()));
         listaImgs.add(new javafx.scene.image.Image(new java.io.File("pacman.png").toURI().toString()));
         listaImgs.add(new javafx.scene.image.Image(new java.io.File("fantasma.png").toURI().toString()));
         listaImgs.add(new javafx.scene.image.Image(new java.io.File("fantasma2.png").toURI().toString()));
         listaImgs.add(new javafx.scene.image.Image(new java.io.File("fantasma3.png").toURI().toString()));
         listaImgs.add(new javafx.scene.image.Image(new java.io.File("fantasma4.png").toURI().toString()));
         listaImgs.add(new javafx.scene.image.Image(new java.io.File("bolitas_pacman.png").toURI().toString()));
+    }
+
+    private void mover_personaje(java.lang.Character tipo,javafx.scene.image.Image image, java.lang.Integer posx, java.lang.Integer posy){
+        java.lang.Boolean encontrado=false;
+        for(int i=0;i<lista_personaje.size();i++){
+            if(((Personajes) lista_personaje.get(i)).getNombre().equals(tipo)) {
+                ((Personajes) lista_personaje.get(i)).setRotate(java.lang.Math.toDegrees(java.lang.Math.atan2(((Personajes) lista_personaje.get(i)).getY()-30*posy,((Personajes) lista_personaje.get(i)).getX()-30*posx))+180);
+                while (((Personajes) lista_personaje.get(i)).getY()!=30*posy) {
+
+
+                    if(((Personajes) lista_personaje.get(i)).getY()>30*posy){
+                        ((Personajes) lista_personaje.get(i)).setY(((Personajes) lista_personaje.get(i)).getY()-1);
+                    }
+                    else{
+                        ((Personajes) lista_personaje.get(i)).setY(((Personajes) lista_personaje.get(i)).getY()+1);
+                    }
+
+                }
+
+                while (((Personajes) lista_personaje.get(i)).getX() != 30 * posx) {
+                    if (((Personajes) lista_personaje.get(i)).getX() > 30 * posx) {
+                        ((Personajes) lista_personaje.get(i)).setX(((Personajes) lista_personaje.get(i)).getX() - 1);
+
+                    } else {
+                        ((Personajes) lista_personaje.get(i)).setX(((Personajes) lista_personaje.get(i)).getX() + 1);
+                    }
+                }
+
+
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                encontrado=true;
+            }
+        }
+        if(!encontrado) {
+            create_rectangle(tipo, image, posx, posy);
+        }
     }
 
 
@@ -280,8 +285,12 @@ public class Tablero implements Cloneable {
 
                         }
                     }
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-
+            }
 
 
 

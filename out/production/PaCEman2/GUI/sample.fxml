@@ -19,7 +19,7 @@
                         <Font name="Verdana" size="19.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button2" layoutX="413.0" layoutY="612.0" mnemonicParsing="false" style="-fx-background-color: linear-gradient(#ffe101, #b53c21);    -fx-text-fill: #032564;    -fx-background-radius: 6;;" text="Modo Espectador">
+                  <Button fx:id="button2" layoutX="413.0" layoutY="612.0" mnemonicParsing="false" onMouseClicked="#spectator_mode" style="-fx-background-color: linear-gradient(#ffe101, #b53c21);    -fx-text-fill: #032564;    -fx-background-radius: 6;;" text="Modo Espectador">
                      <font>
                         <Font name="Verdana" size="19.0" />
                      </font>
