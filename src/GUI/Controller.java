@@ -1,6 +1,5 @@
 package GUI;
 
-
 import Comunicacion.Cliente;
 import Logica.Tablero;
 
@@ -10,8 +9,6 @@ public class Controller {
     public javafx.scene.control.Button button2;
     public javafx.scene.layout.AnchorPane juego;
     private javafx.scene.media.MediaPlayer mediaplayer;
-
-
 
     public void begin_game(javafx.scene.input.MouseEvent mouseEvent) throws java.io.IOException {
 

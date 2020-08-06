@@ -14,8 +14,6 @@ public class Objeto extends javafx.scene.shape.Rectangle {
         this.posy_siguiente = posy_siguiente;
 
     }
-
-
     protected  java.lang.Integer  getPosx_siguiente() {
         return posx_siguiente;
     }
