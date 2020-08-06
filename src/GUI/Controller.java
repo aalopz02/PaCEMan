@@ -10,16 +10,18 @@ public class Controller {
     public javafx.scene.control.Button button2;
     public javafx.scene.layout.AnchorPane juego;
     private javafx.scene.media.MediaPlayer mediaplayer;
-
+    static java.lang.String bip = "pacman-intermission.mp3";
+    static javafx.scene.media.Media hit = new javafx.scene.media.Media(new java.io.File(bip).toURI().toString());
+    static javafx.scene.media.MediaPlayer mediaPlayer = new javafx.scene.media.MediaPlayer(hit);
 
 
     public void begin_game(javafx.scene.input.MouseEvent mouseEvent) throws java.io.IOException {
-
+        Main.stopSong();
         button1.setVisible(false);
         inicio.setVisible(false);
         button1.setVisible(false);
         juego.setVisible(true);
-        Main.stopSong();
+        //mediaPlayer.play();
         Tablero nuevotablero=new Tablero(juego);
         //cliente.initClient();
         //nuevotablero.gen();

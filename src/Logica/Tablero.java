@@ -20,6 +20,7 @@ public class Tablero implements Cloneable {
     public java.lang.Character[][] matriz_anterior;
     public javafx.scene.layout.AnchorPane juego;
     public java.lang.Integer time=0;
+    private java.util.ArrayList<javafx.scene.image.Image> listaImgs = new java.util.ArrayList<>();
 
 
     public LinkedList getLista_inanimado() {
@@ -92,6 +93,8 @@ public class Tablero implements Cloneable {
     }
 
     public Tablero(javafx.scene.layout.AnchorPane juego) {
+
+        initListaSprites();
         this.juego = juego;
     }
 
@@ -106,53 +109,80 @@ public class Tablero implements Cloneable {
         javafx.scene.image.Image image;
         switch(tipo) {
             case 'O':
-
-                image = new javafx.scene.image.Image(new java.io.File("bolitas_pacman.png").toURI().toString());
-                create_rectangle(tipo,image,posx,posy);
+                create_rectangle(tipo,listaImgs.get(7),posx,posy);
                 break;
             case 'X':
-                image = get_image("pastillas_pacman.png");
-                create_rectangle(tipo,image,posx,posy);
+                create_rectangle(tipo,listaImgs.get(0),posx,posy);
                 break;
             case 'F':
-                image = get_image("uva.png");
-                create_rectangle(tipo,image,posx,posy);
+                create_rectangle(tipo,listaImgs.get(1),posx,posy);
                 break;
             case 'J':
-                image = get_image("pacman.png");
                 for(int i=0;i<lista_personaje.size();i++){
                     if(((Personajes) lista_personaje.get(i)).getNombre().equals('J')) {
                         ((Personajes) lista_personaje.get(i)).setRotate(java.lang.Math.toDegrees(java.lang.Math.atan2(((Personajes) lista_personaje.get(i)).getY()-30*posy,((Personajes) lista_personaje.get(i)).getX()-30*posx))+180);
-                        ((Personajes) lista_personaje.get(i)).setX(30*posx);
-                        ((Personajes) lista_personaje.get(i)).setY(30*posy);
+                        while (((Personajes) lista_personaje.get(i)).getY()!=30*posy) {
+
+
+                            if(((Personajes) lista_personaje.get(i)).getY()>30*posy){
+                                ((Personajes) lista_personaje.get(i)).setY(((Personajes) lista_personaje.get(i)).getY()-1);
+                            }
+                            else{
+                                ((Personajes) lista_personaje.get(i)).setY(((Personajes) lista_personaje.get(i)).getY()+1);
+                            }
+
+                        }
+
+                            while (((Personajes) lista_personaje.get(i)).getX() != 30 * posx) {
+                                if (((Personajes) lista_personaje.get(i)).getX() > 30 * posx) {
+                                    ((Personajes) lista_personaje.get(i)).setX(((Personajes) lista_personaje.get(i)).getX() - 1);
+
+                                } else {
+                                    ((Personajes) lista_personaje.get(i)).setX(((Personajes) lista_personaje.get(i)).getX() + 1);
+                                }
+                            }
+
+
+                        try {
+                            Thread.sleep(10);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         encontrado=true;
                     }
                 }
                 if(!encontrado){
-                    create_rectangle(tipo,image,posx,posy);
+                    create_rectangle(tipo,listaImgs.get(2),posx,posy);
                 }
                 break;
             case 'B':
-                image = get_image("fantasma.png");
-                create_rectangle(tipo,image,posx,posy);
+                create_rectangle(tipo,listaImgs.get(3),posx,posy);
                 break;
             case 'P':
-                image = get_image("fantasma2.png");
-                create_rectangle(tipo,image,posx,posy);
+                create_rectangle(tipo,listaImgs.get(4),posx,posy);
                 break;
             case 'I':
-                image = get_image("fantasma3.png");
-                create_rectangle(tipo,image,posx,posy);
+                create_rectangle(tipo,listaImgs.get(5),posx,posy);
                 break;
             case 'C':
-                image = get_image("fantasma4.png");
-                create_rectangle(tipo,image,posx,posy);
+                create_rectangle(tipo,listaImgs.get(6),posx,posy);
                 break;
 
         }
 
 
     }
+    private void initListaSprites(){
+        listaImgs.add(new javafx.scene.image.Image(new java.io.File("pastillas_pacman.png").toURI().toString()));
+        listaImgs.add(new javafx.scene.image.Image(new java.io.File("uva.png").toURI().toString()));
+        listaImgs.add(new javafx.scene.image.Image(new java.io.File("pacman.png").toURI().toString()));
+        listaImgs.add(new javafx.scene.image.Image(new java.io.File("fantasma.png").toURI().toString()));
+        listaImgs.add(new javafx.scene.image.Image(new java.io.File("fantasma2.png").toURI().toString()));
+        listaImgs.add(new javafx.scene.image.Image(new java.io.File("fantasma3.png").toURI().toString()));
+        listaImgs.add(new javafx.scene.image.Image(new java.io.File("fantasma4.png").toURI().toString()));
+        listaImgs.add(new javafx.scene.image.Image(new java.io.File("bolitas_pacman.png").toURI().toString()));
+    }
+
 
     public javafx.scene.image.Image get_image(java.lang.String titulo_imagen){
         javafx.scene.image.Image image = new javafx.scene.image.Image(new java.io.File(titulo_imagen).toURI().toString());
@@ -219,7 +249,6 @@ public class Tablero implements Cloneable {
 
             public void handle(long now) {
 
-                if (time==10) {
 
                     //Tecla space pulsada por lo que cuando se suelte dispara y la velocidad depende de cuanto tiempo se dejo pulsada
                     Main.scene.setOnKeyPressed(e -> {
@@ -238,6 +267,7 @@ public class Tablero implements Cloneable {
                         for (int i = 0; i < lista_inanimado.size(); i++) {
                             juego.getChildren().remove(lista_inanimado.get(i));
                         }
+                        lista_inanimado.clear();
                         try {
                             if (last.name() == "UP") {
 
@@ -250,11 +280,10 @@ public class Tablero implements Cloneable {
 
                         }
                     }
-                    time=0;
                 }
-                time++;
 
-            }
+
+
 
 
         };
