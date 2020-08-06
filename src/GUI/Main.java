@@ -19,7 +19,7 @@ public class Main extends javafx.application.Application {
         scene=new javafx.scene.Scene(root, 630, 850);
         primaryStage.setScene(scene);
         primaryStage.show();
-        mediaPlayer.play();
+        //mediaPlayer.play();
         stage=primaryStage;
     }
 

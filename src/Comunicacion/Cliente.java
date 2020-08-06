@@ -6,6 +6,7 @@ import Logica.Tablero;
 public class Cliente extends comunicacion {
 
     public  java.lang.String array;
+    public  java.lang.String msj;
 
 
     public String getArray() {
@@ -20,11 +21,19 @@ public class Cliente extends comunicacion {
         super("cliente");
     }
 
+    public String getMsj() {
+        return msj;
+    }
+
+    public void setMsj(String msj) {
+        this.msj = msj;
+    }
+
     public void initClient(){
         try {
             msjOut = new java.io.DataOutputStream(client.getOutputStream());
-            msjOut.writeBytes("Holahola");
-            System.out.println("msjSent");
+            msjOut.writeBytes(msj);
+            //System.out.println("msjSent");
 
             java.io.BufferedReader inFromServer = new java.io.BufferedReader(new java.io.InputStreamReader(client.getInputStream()));
             java.lang.String reply = inFromServer.readLine();

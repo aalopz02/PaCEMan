@@ -21,11 +21,11 @@ public class Controller {
         juego.setVisible(true);
         Main.stopSong();
         Tablero nuevotablero=new Tablero(juego);
-        System.out.println(juego.getHeight());
-        //Cliente cliente=new Cliente(nuevotablero);
         //cliente.initClient();
         //nuevotablero.gen();
-        nuevotablero.get_server_info();
+        nuevotablero.get_server_info("Inicio");
+        nuevotablero.setMatriz_anterior(nuevotablero.getMatriz_actual());
+        nuevotablero.game_init();
        /* titulo.setVisible(false);
         juegopantalla.setVisible(true);
         Juego game=new Juego(juegopantalla);
