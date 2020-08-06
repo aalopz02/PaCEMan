@@ -11,10 +11,11 @@
 #include "macros.h"
 
 struct sockaddr_in address;
+struct sockaddr_in addressEspectador;
 struct struct_tablero tablero;
 struct struct_jugador jugador;
 
-int servidor, cliente;
+int servidor, serverEspetador, cliente, clienteEspectador;
 int opt = 1;
 int addrlen = sizeof(address);
 char buffer[1024];
@@ -37,8 +38,11 @@ struct struct_jugador{
 };
 
 struct fantasma{
+  char nombre;
+  char anterior;
   int posX;
   int posY;
+  int aleatorio;
 };
 
 struct fruta{
@@ -109,6 +113,31 @@ void wait(int seconds){
   while(time(0) < total);
 }
 
+void* hiloEspectador(void *args){
+
+  if ((clienteEspectador = accept(serverEspetador, (struct sockaddr *)&addressEspectador,(socklen_t*)&addrlen)) < 0 ){
+      perror("accept");
+      exit(EXIT_FAILURE);
+  }
+  write(clienteEspectador , ok , strlen(ok));
+  close(clienteEspectador);
+  while(strcmp(buffer,"OUT") != 0){
+    if (listen(serverEspetador, 3) < 0){
+        perror("listen");
+        exit(EXIT_FAILURE);
+    }
+    if ((clienteEspectador = accept(serverEspetador, (struct sockaddr *)&addressEspectador,(socklen_t*)&addrlen)) < 0 ){
+        perror("accept");
+        exit(EXIT_FAILURE);
+    }
+    int len = recv(clienteEspectador, buffer, sizeof(buffer), 0);
+    if (len > 0) {
+      write(clienteEspectador, buffer, 1024);
+    }
+    close(clienteEspectador);
+  }
+}
+
 void* hiloConsolaAdmin(void *args){
   do{
     printf("Enter a command: ");
@@ -155,17 +184,100 @@ void* superPacMan(void *args){
   }
 }
 
+void moverFantasma(int i){
+  int posX = tablero.fantasmasActivos[i].posX;
+  int posY = tablero.fantasmasActivos[i].posY;
+  tablero.area[posX][posY] = tablero.fantasmasActivos[i].anterior;
+  if ((posX == DEFAULT_SPAWN_X-3 && posY == DEFAULT_SPAWN_Y)){
+    posX = posX-1;
+  } else {
+    if ((posX == DEFAULT_SPAWN_X-2 && posY == DEFAULT_SPAWN_Y)){
+      posX = posX-1;
+    } else {
+      if ((posX == DEFAULT_SPAWN_X-1 && posY == DEFAULT_SPAWN_Y)){
+        posX = posX-1;
+      } else {
+        if ((posX == DEFAULT_SPAWN_X && posY == DEFAULT_SPAWN_Y)){
+          posX = posX-1;
+
+        } else {
+          if (tablero.fantasmasActivos[i].aleatorio == 0){
+            tablero.fantasmasActivos[i].aleatorio = 0;//cambiar para entre frames
+            int n = rand() % 3;
+            int incrementoX = 0;
+            int incrementoY = 0;
+            if (n == 0){
+              incrementoX = -1;
+            } else {
+              if (n == 1){
+                incrementoY = 1;
+              } else {
+                if (n == 2){
+                  incrementoX = 1;
+                } else {
+                  incrementoY = -1;
+                }
+              }
+            }
+            if ((tablero.area[posX + incrementoX][posY + incrementoY] != PARED) && (tablero.area[posX + incrementoX][posY + incrementoY] != SPAWN)){
+              posX = posX + incrementoX;
+              posY = posY + incrementoY;
+
+            } else {
+              incrementoX = 0;
+              incrementoY = 0;
+              for (int j = 0; j < 4; j++){
+                if (j == 0){
+                  incrementoX = -1;
+                } else {
+                  if (j == 1){
+                    incrementoY = 1;
+                  } else {
+                    if (j == 2){
+                      incrementoX = 1;
+                    } else {
+                      incrementoY = -1;
+                    }
+                  }
+                }
+                if ((tablero.area[posX + incrementoX][posY + incrementoY] != PARED) && (tablero.area[posX + incrementoX][posY + incrementoY] != SPAWN)){
+                  posX = posX + incrementoX;
+                  posY = posY + incrementoY;
+
+                }
+              }
+            }
+          } else {
+            tablero.fantasmasActivos[i].aleatorio = tablero.fantasmasActivos[i].aleatorio + 1;
+          }
+        }
+      }
+    }
+  }
+  tablero.fantasmasActivos[i].posX = posX;
+  tablero.fantasmasActivos[i].posY= posY;
+  tablero.fantasmasActivos[i].anterior = tablero.area[posX][posY];
+  tablero.area[posX][posY] = tablero.fantasmasActivos[i].nombre;
+  //toogle betwen random move and good move, maybe using vectors?
+
+}
+
 void checkCommand(){
   if (flagEntradaAdmin){
     if (strcmp(comandoAdmin,"fantasma\n") == 0) {
       if (tablero.numeroFantasmas < MAX_GHOSTS) {
         tablero.fantasmasActivos[tablero.numeroFantasmas].posX = DEFAULT_SPAWN_X;
         tablero.fantasmasActivos[tablero.numeroFantasmas].posY = DEFAULT_SPAWN_Y;
+        tablero.fantasmasActivos[tablero.numeroFantasmas].nombre = nombresDefault[tablero.numeroFantasmas];
+        tablero.fantasmasActivos[tablero.numeroFantasmas].anterior = SPAWN;
+        tablero.fantasmasActivos[tablero.numeroFantasmas].aleatorio = 0;
         tablero.area[DEFAULT_SPAWN_X][DEFAULT_SPAWN_Y] = nombresDefault[tablero.numeroFantasmas];
         tablero.numeroFantasmas = tablero.numeroFantasmas + 1;
         flagEntradaAdmin = false;
         strcpy(comandoAdmin,"");
         return;
+      } else {
+        printf("%s\n", "deje de pedirla");
       }
     }
     if (strcmp(comandoAdmin,"pill\n") == 0) {
@@ -202,6 +314,9 @@ void checkCommand(){
 void checkMove(int posX, int posY){
   checkCommand();
   bool flagDead = false;
+  for (int i = 0; i < tablero.numeroFantasmas; i++){
+    moverFantasma(i);
+  }
   if (tablero.area[posX][posY] != PARED && tablero.area[posX][posY] != SPAWN){
     if (tablero.area[posX][posY] == PUNTO){
       jugador.puntaje = jugador.puntaje + PTO_DOT;
@@ -216,7 +331,7 @@ void checkMove(int posX, int posY){
       jugador.super = true;
       pthread_t contador;
       int hilo = pthread_create(&contador,NULL, &superPacMan,NULL);
-
+      pthread_join(contador,NULL);
     }
     if (tablero.bonus.posX == posX && tablero.bonus.posY == posY) {
       jugador.puntaje = jugador.puntaje + tablero.bonus.score;
@@ -226,10 +341,11 @@ void checkMove(int posX, int posY){
       tablero.bonus.posX = -1;
       tablero.bonus.posY = -1;
     }
-    for (int i = 0; i <= tablero.numeroFantasmas; i++){
+    for (int i = 0; i < tablero.numeroFantasmas; i++){
       if (tablero.fantasmasActivos[i].posX == posX && tablero.fantasmasActivos[i].posY == posY){
         if (jugador.super) {
           printf("%s\n","Score");
+          //mandar a pos default
         } else {
           printf("%s\n","DED");
           flagDead = true;
@@ -257,28 +373,35 @@ void checkMove(int posX, int posY){
 }
 
 void armarRespuesta(char *respuesta) {
-  bzero(buffer,1024);
-  //rearmar tablero con structs
+  bzero(respuesta,1024);
+  //char aux[32];
+  //sprintf(aux, "%d", jugador.vidas);
+  //printf("%s\n", aux);
+  //char aux2[16];
+  //sprintf(aux2, "%d", jugador.puntaje);
+  //strcat(aux,aux2);
+  //printf("%s\n", aux2);
   strcpy(respuesta,tablero.area[0]);
+  //strcat(respuesta,aux2);
 }
 
 void procesarEntrada(char *respuesta){
   int incrementoX = 0;
   int incrementoY = 0;
-  if (strcmp(respuesta,"OUT") == 0) {
+  if (strcmp(respuesta,END_COMMAND) == 0) {
     printf("%s\n", "FIN");
     return;
   }
-  if (strcmp(respuesta,"RIGHT") == 0) {
+  if (strcmp(respuesta,RIGHT_COMMAND) == 0) {
     incrementoY = 1;
   }
-  if (strcmp(respuesta,"LEFT") == 0) {
+  if (strcmp(respuesta,LEFT_COMMAND) == 0) {
     incrementoY = -1;
   }
-  if (strcmp(respuesta,"DOWN") == 0) {
+  if (strcmp(respuesta,DOWN_COMMAND) == 0) {
     incrementoX = 1;
   }
-  if (strcmp(respuesta,"UPS") == 0) {
+  if (strcmp(respuesta,UP_COMMAND) == 0) {
     incrementoX = -1;
   }
   checkMove(jugador.posX+incrementoX,jugador.posY+incrementoY);
@@ -286,7 +409,7 @@ void procesarEntrada(char *respuesta){
 }
 
 void startServer(){
-
+  //Socket principal
   if ((servidor = socket(AF_INET, SOCK_STREAM, 0)) == 0){
       perror("socket failed");
       exit(EXIT_FAILURE);
@@ -298,7 +421,6 @@ void startServer(){
   address.sin_family = AF_INET;
   address.sin_addr.s_addr = INADDR_ANY;
   address.sin_port = htons(PORT);
-
   if (bind(servidor, (struct sockaddr *)&address, sizeof(address))<0){
       perror("bind failed");
       exit(EXIT_FAILURE);
@@ -307,7 +429,29 @@ void startServer(){
       perror("listen");
       exit(EXIT_FAILURE);
   }
-  printf("%s\n", "stand-by");
+  //Socket para espectador
+  if ((serverEspetador = socket(AF_INET, SOCK_STREAM, 0)) == 0){
+      perror("socketEspectador failed");
+      exit(EXIT_FAILURE);
+  }
+  if (setsockopt(serverEspetador, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt))){
+      perror("setsockopt");
+      exit(EXIT_FAILURE);
+  }
+  addressEspectador.sin_family = AF_INET;
+  addressEspectador.sin_addr.s_addr = INADDR_ANY;
+  addressEspectador.sin_port = htons(AUX_PORT);
+  if (bind(serverEspetador, (struct sockaddr *)&addressEspectador, sizeof(addressEspectador))<0){
+      perror("bind failed");
+      exit(EXIT_FAILURE);
+  }
+  if (listen(serverEspetador, 3) < 0){
+      perror("listen");
+      exit(EXIT_FAILURE);
+  }
+  printf("%s\n", "espectador-stand-by");
+  //escucha socket main
+  printf("%s\n", "main-stand-by");
   if ((cliente = accept(servidor, (struct sockaddr *)&address,(socklen_t*)&addrlen)) < 0 ){
       perror("accept");
       exit(EXIT_FAILURE);
@@ -316,9 +460,12 @@ void startServer(){
   int hilo = pthread_create(&idConsola,NULL, &hiloConsolaAdmin,NULL);
   printf("%s\n", "admin iniciado");
   //Detecta cliente y manda ok
+  //Inicia main y inicia hilo de espectador para esperar
+  pthread_t idEspectador;
+  int hiloAux = pthread_create(&idEspectador,NULL, &hiloEspectador,NULL);
+  //Hilo main
   write(cliente , ok , strlen(ok));
-  shutdown(cliente,2);
-
+  close(cliente);
   bzero(buffer,1024);
   while(strcmp(buffer,"OUT") != 0){
 
@@ -337,11 +484,13 @@ void startServer(){
     if (len > 0) {
       procesarEntrada(buffer);
       write(cliente, buffer, 1024);
-      shutdown(cliente,2);
+
     }
+    close(cliente);
   }
   flagFin = true;
   pthread_join(idConsola,NULL);
+  pthread_join(idEspectador,NULL);
 }
 
 

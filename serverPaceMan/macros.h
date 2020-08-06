@@ -1,4 +1,5 @@
 #define PORT 8080
+#define AUX_PORT 2020
 #define LARGO 21
 #define ALTO 27
 #define DEFAULT_X 25
@@ -18,3 +19,8 @@
 #define DEFAULT_FRUTA_Y 10
 #define PTO_DOT 10
 #define NUMERO_DOTS 222
+#define UP_COMMAND "UPS"
+#define LEFT_COMMAND "LEFT"
+#define RIGHT_COMMAND "RIGHT"
+#define DOWN_COMMAND "DOWN"
+#define END_COMMAND "OUT"
