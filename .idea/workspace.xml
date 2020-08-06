@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="ajustes a interfaz y cliente">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PaCEman2/GUI/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PaCEman2/GUI/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PaCEman2/Logica/Tablero$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PaCEman2/Logica/Tablero$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PaCEman2/Logica/Tablero.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PaCEman2/Logica/Tablero.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Logica/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Logica/Tablero.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -226,7 +221,7 @@
       <option name="presentableId" value="Default" />
       <updated>1359379246138</updated>
       <workItem from="1359379250712" duration="1302000" />
-      <workItem from="1596690930476" duration="4172000" />
+      <workItem from="1596690930476" duration="4419000" />
     </task>
     <task id="LOCAL-00001" summary="ajustes a interfaz y cliente">
       <created>1596693604796</created>
@@ -235,7 +230,14 @@
       <option name="project" value="LOCAL" />
       <updated>1596693604796</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="ajustes a interfaz y cliente">
+      <created>1596695264358</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1596695264358</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -252,10 +254,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="531" y="253" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1366.728@0.0.1366.728" timestamp="1596690936670" />
-    <state x="338" y="0" key="CommitChangelistDialog2" timestamp="1596693601965">
+    <state x="338" y="0" key="CommitChangelistDialog2" timestamp="1596695263117">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="338" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1596693601965" />
+    <state x="338" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1596695263117" />
     <state width="1323" height="137" key="GridCell.Tab.0.bottom" timestamp="1596694789267">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -280,10 +282,14 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="7" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1596690959971" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1596693608456">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1596695267055">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1596693608456" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1596695267055" />
+    <state x="492" y="281" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1596695361208">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="492" y="281" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1596695361208" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
