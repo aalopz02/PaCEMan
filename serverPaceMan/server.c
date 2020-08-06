@@ -121,7 +121,7 @@ void* hiloEspectador(void *args){
   }
   write(clienteEspectador , ok , strlen(ok));
   close(clienteEspectador);
-  while(strcmp(buffer,"OUT") != 0){
+  while(!flagFin){
     if (listen(serverEspetador, 3) < 0){
         perror("listen");
         exit(EXIT_FAILURE);
@@ -489,8 +489,8 @@ void startServer(){
     close(cliente);
   }
   flagFin = true;
-  pthread_join(idConsola,NULL);
-  pthread_join(idEspectador,NULL);
+  pthread_cancel(idConsola);
+  pthread_cancel(idEspectador);
 }
 
 
