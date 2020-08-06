@@ -1,7 +1,5 @@
 package GUI;
 
-
-import Comunicacion.Cliente;
 import Logica.Tablero;
 
 public class Controller {
@@ -22,7 +20,7 @@ public class Controller {
         button1.setVisible(false);
         juego.setVisible(true);
         //mediaPlayer.play();
-        Tablero nuevotablero=new Tablero(juego);
+        Tablero nuevotablero=new Tablero("main",juego);
         //cliente.initClient();
         //nuevotablero.gen();
         nuevotablero.get_server_info("Inicio");
@@ -44,7 +42,7 @@ public class Controller {
         button1.setVisible(false);
         juego.setVisible(true);
         //mediaPlayer.play();
-        Tablero nuevotablero=new Tablero(juego);
+        Tablero nuevotablero=new Tablero("espectador",juego);
         //cliente.initClient();
         //nuevotablero.gen();
         nuevotablero.get_server_info("Inicio");

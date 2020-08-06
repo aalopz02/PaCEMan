@@ -13,7 +13,6 @@ public class Main extends javafx.application.Application {
 
     @Override
     public void start(javafx.stage.Stage primaryStage) throws java.io.IOException{
-
         root = javafx.fxml.FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("PaCEman");
         scene=new javafx.scene.Scene(root, 630, 850);

@@ -21,7 +21,25 @@ public class Tablero implements Cloneable {
     public javafx.scene.layout.AnchorPane juego;
     public java.lang.Integer time=0;
     private java.util.ArrayList<javafx.scene.image.Image> listaImgs = new java.util.ArrayList<>();
+    DataOutputStream msjOut;
+    boolean espectador = false;
+    int puerto = 0;
+    int puertoMain = 8080;
+    int puertoEspectador = 2020;
+    String nombreHost = "192.168.1.6";
+    int tiempo = 50;
 
+    public Tablero(String modo,javafx.scene.layout.AnchorPane juego) {
+        if (!modo.equals("main")){
+            espectador =true;
+            puerto = puertoEspectador;
+            tiempo = 10;
+        } else {
+            puerto = puertoMain;
+        }
+        initListaSprites();
+        this.juego = juego;
+    }
 
     public LinkedList getLista_inanimado() {
         return lista_inanimado;
@@ -59,7 +77,6 @@ public class Tablero implements Cloneable {
     }
 
     public void list_to_matrix(java.lang.String lista, java.lang.Integer largo, java.lang.Integer ancho) {
-
         java.lang.Character[][] matriz_aux = new java.lang.Character[largo][ancho];
         java.lang.Integer indice = 0;
         for (java.lang.Integer j = 0; j < largo; j++) {
@@ -67,35 +84,19 @@ public class Tablero implements Cloneable {
 
                 matriz_aux[j][i] = lista.charAt(indice);
                 indice++;
-
             }
-
-
         }
         setMatriz_actual(matriz_aux);
         mostrarImagen();
 
     }
 
-
     public void mostrarImagen(){
-
-
         for (java.lang.Integer i = 0; i < matriz_actual.length; i++) {
-
             for (java.lang.Integer j = 0; j < matriz_actual[0].length; j++) {
-
                 get_image(matriz_actual[i][j],j,i);
             }
-
         }
-
-    }
-
-    public Tablero(javafx.scene.layout.AnchorPane juego) {
-
-        initListaSprites();
-        this.juego = juego;
     }
 
     //metodo que añade un objeto rectangulo a una pantalla
@@ -104,7 +105,6 @@ public class Tablero implements Cloneable {
     }
 
     public void get_image(java.lang.Character tipo,int posx,int posy){
-
         javafx.scene.image.Image image;
         switch(tipo) {
             case 'O':
@@ -132,11 +132,9 @@ public class Tablero implements Cloneable {
             case 'C':
                 mover_personaje(tipo,listaImgs.get(6),posx,posy);
                 break;
-
         }
-
-
     }
+
     private void initListaSprites(){
         listaImgs.add(new javafx.scene.image.Image(new java.io.File("pastillas_pacman.png").toURI().toString()));
         listaImgs.add(new javafx.scene.image.Image(new java.io.File("uvas.png").toURI().toString()));
@@ -154,17 +152,13 @@ public class Tablero implements Cloneable {
             if(((Personajes) lista_personaje.get(i)).getNombre().equals(tipo)) {
                 ((Personajes) lista_personaje.get(i)).setRotate(java.lang.Math.toDegrees(java.lang.Math.atan2(((Personajes) lista_personaje.get(i)).getY()-30*posy,((Personajes) lista_personaje.get(i)).getX()-30*posx))+180);
                 while (((Personajes) lista_personaje.get(i)).getY()!=30*posy) {
-
-
                     if(((Personajes) lista_personaje.get(i)).getY()>30*posy){
                         ((Personajes) lista_personaje.get(i)).setY(((Personajes) lista_personaje.get(i)).getY()-1);
                     }
                     else{
                         ((Personajes) lista_personaje.get(i)).setY(((Personajes) lista_personaje.get(i)).getY()+1);
                     }
-
                 }
-
                 while (((Personajes) lista_personaje.get(i)).getX() != 30 * posx) {
                     if (((Personajes) lista_personaje.get(i)).getX() > 30 * posx) {
                         ((Personajes) lista_personaje.get(i)).setX(((Personajes) lista_personaje.get(i)).getX() - 1);
@@ -173,8 +167,6 @@ public class Tablero implements Cloneable {
                         ((Personajes) lista_personaje.get(i)).setX(((Personajes) lista_personaje.get(i)).getX() + 1);
                     }
                 }
-
-
                 try {
                     Thread.sleep(10);
                 } catch (InterruptedException e) {
@@ -188,16 +180,9 @@ public class Tablero implements Cloneable {
         }
     }
 
-
-    public javafx.scene.image.Image get_image(java.lang.String titulo_imagen){
-        javafx.scene.image.Image image = new javafx.scene.image.Image(new java.io.File(titulo_imagen).toURI().toString());
-        return image;
-    }
-
     public AnchorPane getJuego() {
         return juego;
     }
-
 
     public void setJuego(AnchorPane juego) {
         this.juego = juego;
@@ -212,7 +197,6 @@ public class Tablero implements Cloneable {
     }
 
     public void create_rectangle(java.lang.Character tipo, javafx.scene.image.Image image, java.lang.Integer posx, java.lang.Integer posy){
-
         if(tipo.equals('O')||tipo.equals('X')||tipo.equals('F')){
             Objeto o=new Objeto(0,0);
             o.setHeight(30);
@@ -239,62 +223,64 @@ public class Tablero implements Cloneable {
     }
 
     public void get_server_info(java.lang.String msj) throws java.io.IOException {
-       Cliente cliente=new Cliente();
-       cliente.setMsj(msj);
-       cliente.initClient();
-       list_to_matrix(cliente.getArray(),27,21);
-
-
+        Socket cliente = new Socket(nombreHost, puerto);
+        String reply = "";
+        try {
+            msjOut = new DataOutputStream(cliente.getOutputStream());
+            msjOut.writeBytes(msj);
+            System.out.println("msjSent");
+            BufferedReader inFromServer = new BufferedReader(new InputStreamReader(cliente.getInputStream()));
+            reply = inFromServer.readLine();
+            cliente.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        if (!msj.equals("Inicio")){
+            list_to_matrix(reply,27,21);
+        } else {
+            get_server_info("ok");
+        }
     }
 
     public void game_init(){
         // inicia un gameloop
         javafx.animation.AnimationTimer gameLoop = new javafx.animation.AnimationTimer() {
             @Override
-
             public void handle(long now) {
-
-
                     //Tecla space pulsada por lo que cuando se suelte dispara y la velocidad depende de cuanto tiempo se dejo pulsada
                     Main.scene.setOnKeyPressed(e -> {
-
                                 if (e.getCode() == KeyCode.LEFT || e.getCode() == KeyCode.UP || e.getCode() == KeyCode.RIGHT || e.getCode() == KeyCode.DOWN) {
-
                                     if (last != e.getCode()) {
                                         last = e.getCode();
                                     }
-
-
                                 }
                             }
                     );
-                    if (last != null) {
-                        for (int i = 0; i < lista_inanimado.size(); i++) {
-                            juego.getChildren().remove(lista_inanimado.get(i));
-                        }
-                        lista_inanimado.clear();
-                        try {
+                if (last != null) {
+                    for (int i = 0; i < lista_inanimado.size(); i++) {
+                        juego.getChildren().remove(lista_inanimado.get(i));
+                    }
+                    lista_inanimado.clear();
+                    try {
+                        if (espectador){
+                            get_server_info("sup");
+                        } else {
                             if (last.name() == "UP") {
-
                                 get_server_info("UPS");
                             } else {
                                 get_server_info(last.name());
                             }
-                        } catch (IOException e) {
-                            e.printStackTrace();
-
                         }
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
+                }
                 try {
-                    Thread.sleep(50);
+                    Thread.sleep(tiempo);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-
-
-
-
         };
         gameLoop.start();
     }
